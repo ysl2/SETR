@@ -10,10 +10,8 @@ from .decode_head import BaseDecodeHead
 @HEADS.register_module()
 class FPNHead(BaseDecodeHead):
     """Panoptic Feature Pyramid Networks.
-
     This head is the implementation of `Semantic FPN
     <https://arxiv.org/abs/1901.02446>`_.
-
     Args:
         feature_strides (tuple[int]): The strides for input feature maps.
             stack_lateral. All strides suppose to be power of 2. The first

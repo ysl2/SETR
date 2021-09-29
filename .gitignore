@@ -115,3 +115,8 @@ work_dirs/
 
 # Pytorch
 *.pth
+*.zip
+*.tar.gz
+*.tar
+
+.DS_Store

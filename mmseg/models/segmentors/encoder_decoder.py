@@ -280,13 +280,20 @@ class EncoderDecoder(BaseSegmentor):
         """
         # aug_test rescale all imgs back to ori_shape for now
         assert rescale
+        output_seg_logit = False
         # to save memory, we get augmented seg logit inplace
         seg_logit = self.inference(imgs[0], img_metas[0], rescale)
         for i in range(1, len(imgs)):
             cur_seg_logit = self.inference(imgs[i], img_metas[i], rescale)
             seg_logit += cur_seg_logit
         seg_logit /= len(imgs)
-        seg_pred = seg_logit.argmax(dim=1)
+
+        # Modify here for ensemble learning to output the segmentation logit
+        if output_seg_logit:
+            seg_pred = seg_logit
+        else:
+            seg_pred = seg_logit.argmax(dim=1)
+
         seg_pred = seg_pred.cpu().numpy()
         # unravel batch dim
         seg_pred = list(seg_pred)

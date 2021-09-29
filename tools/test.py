@@ -101,6 +101,7 @@ def main():
 
     # build the dataloader
     # TODO: support multiple images per gpu (only minor changes are needed)
+
     dataset = build_dataset(cfg.data.test)
     data_loader = build_dataloader(
         dataset,
@@ -125,7 +126,7 @@ def main():
             broadcast_buffers=False)
         outputs = multi_gpu_test(model, data_loader, args.tmpdir,
                                  args.gpu_collect)
-
+    print('#'*10+'finish test'+'#'*10)
     rank, _ = get_dist_info()
     if rank == 0:
         if args.out:
@@ -133,6 +134,7 @@ def main():
             mmcv.dump(outputs, args.out)
         kwargs = {} if args.eval_options is None else args.eval_options
         if args.format_only:
+            print('#'*10+'begin format' + '#'*10)
             dataset.format_results(outputs, **kwargs)
         if args.eval:
             dataset.evaluate(outputs, args.eval, **kwargs)

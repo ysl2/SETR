@@ -116,7 +116,6 @@ class CityscapesDataset(CustomDataset):
         else:
             tmp_dir = None
         result_files = self.results2img(results, imgfile_prefix, to_label_id)
-
         return result_files, tmp_dir
 
     def evaluate(self,
@@ -181,6 +180,7 @@ class CityscapesDataset(CustomDataset):
         print_log(msg, logger=logger)
 
         result_files, tmp_dir = self.format_results(results, imgfile_prefix)
+        print("result_files", result_files)
 
         if tmp_dir is None:
             result_dir = imgfile_prefix
