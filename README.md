@@ -1,5 +1,7 @@
 # SEgmentation TRansformers -- SETR
 
+> Backbone: https://github.com/open-mmlab/mmsegmentation/commit/0264de0bb000e09a4dc348fc1759d0834a4af940
+
 ![image](fig/image.png)
 
 > [**Rethinking Semantic Segmentation from a Sequence-to-Sequence Perspective with Transformers**](https://arxiv.org/abs/2012.15840),            
